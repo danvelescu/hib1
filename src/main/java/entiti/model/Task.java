@@ -2,6 +2,8 @@ package entiti.model;
 
 
 import entiti.model.enums.Status;
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 
@@ -9,6 +11,7 @@ import static javax.persistence.ConstraintMode.PROVIDER_DEFAULT;
 
 @Entity
 @Table(name = "t_task")
+@SQLDelete(sql = "UPDATE t_task SET user_id = null where user_id = ?")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

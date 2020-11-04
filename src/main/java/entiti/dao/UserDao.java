@@ -87,25 +87,14 @@ public class UserDao {
         entityManager.close();
         return users;
     }
-    public void deleteUser(int id){
-        javax.persistence.EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
 
-        User user = entityManager.find(User.class,id);
-
-        entityManager.remove(user);
-
-        entityManager.getTransaction().commit();
-        entityManager.close();
-    }
 
     public void softDeletebyId(int id){
         javax.persistence.EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
         User user = entityManager.find(User.class,id);
-        user.setEnabled(false);
-        entityManager.merge(user);
+        entityManager.remove(user);
         entityManager.getTransaction().commit();
         entityManager.close();
     }

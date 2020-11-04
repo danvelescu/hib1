@@ -2,14 +2,17 @@ package entiti.model;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Entity
 @Table(name = "t_user")
+@SQLDelete(sql = "UPDATE t_user SET active = false where user_id = ?")
 public class User {
 
     @Id

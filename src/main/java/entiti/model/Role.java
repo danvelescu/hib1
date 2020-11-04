@@ -2,6 +2,8 @@ package entiti.model;
 
 
 import entiti.model.enums.UserRoles;
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_role")
+@SQLDelete(sql = "UPDATE user_roles SET role_id = null where user_id = ?")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
